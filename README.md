@@ -4,7 +4,7 @@ Reusable agent skills for building polished, production-ready [Devvit Web](https
 
 [![skills.sh](https://skills.sh/b/Montoya/devvit-skills)](https://skills.sh/Montoya/devvit-skills)
 
-These skills capture practical guidance for Reddit-native product behavior, games, performance, testing, and responsive UI. Each skill is self-contained and follows the open [Agent Skills specification](https://agentskills.io/).
+These skills capture practical guidance for Reddit-native product behavior, games, performance, testing, and responsive UI. Each skill is self-contained and follows the open [Agent Skills specification](https://agentskills.io/). I developed these skills based on my learnings building multiple Reddit games with ChatGPT / Codex: [Art Breaker](https://www.reddit.com/r/ArtBreaker/), [Pop Answers](https://www.reddit.com/r/PopAnswers/), and [Scores](https://www.reddit.com/r/ScoresGame/). 
 
 ## Install
 
