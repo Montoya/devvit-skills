@@ -41,6 +41,24 @@ Never accept client-calculated time, score, completion, identity, inventory, rew
 - Preserve game mechanics when reduced motion, muted sound, keyboard control, or assistive technology changes presentation.
 - When the inline entrypoint is launch-only, keep it lightweight and move the core loop into the game entrypoint. A bounded, fast, gesture-compliant game may instead run directly inline.
 
+## Build for player success
+
+Treat these as the baseline quality bar for every game. Reddit also looks for them when deciding whether and how prominently to feature a game:
+
+- Provide a compelling, custom first screen rather than a generic or unfinished entrypoint.
+- Support both mobile and desktop with a clean, accessible viewport.
+- Make the premise, controls, and next action self-explanatory so someone can learn, play, or participate from the post without outside context.
+- Keep every screen usable in fullscreen, inline mobile, and inline desktop layouts. Avoid unnecessary scrolling; never require or allow scrolling within an inline webview.
+
+Beyond baseline usability, design for the qualities that help a game succeed with players and strengthen its featuring potential:
+
+- standout user experience: fast, intuitive, responsive play across devices;
+- design and polish: cohesive visuals, an appealing first screen, and mobile-optimized layouts;
+- community engagement: mechanics that encourage posts, comments, or user-generated content;
+- innovation: mechanics or concepts that make playing on Reddit feel distinct;
+- performance and retention: stable technical behavior and meaningful reasons for players to return; and
+- iteration: regular improvements informed by player feedback.
+
 ## Verify
 
-Test every state transition, invalid transition, duplicate command, boundary timestamp, concurrent finalization, refresh point, reconnect path, and eligibility mode. Confirm that hidden information never appears in client bundles, bootstrap payloads, share data, logs, or premature graphs.
+Test every state transition, invalid transition, duplicate command, boundary timestamp, concurrent finalization, refresh point, reconnect path, and eligibility mode. Confirm that hidden information never appears in client bundles, bootstrap payloads, share data, logs, or premature graphs. For every release, test the custom first screen, self-explanatory onboarding, and every game screen on inline mobile, inline desktop, and fullscreen viewports; confirm that inline play never depends on an internal scrollbar.
