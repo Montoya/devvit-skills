@@ -43,6 +43,14 @@ Classify information before designing endpoints. Do not send hidden answers, unr
 
 Return opaque IDs and the minimum display state needed for the current transition. Reveal canonical information only when the authoritative state permits it. Check production bundles, bootstrap JSON, network responses, browser storage, share payloads, and logs for accidental disclosure.
 
+## Fit the platform budgets
+
+Keep canonical game state in Redis rather than browser `localStorage` or `postData`. Browser storage does not provide durable continuity across app updates, and `postData` is limited to 2 KB per post and is visible as shared post state. Use `postData` only for compact public configuration or a state hint that is safe for every viewer.
+
+Design each command to complete comfortably within the Devvit Web ceilings of 30 seconds, a 4 MB request payload, and a 10 MB response payload. Paginate histories and rankings, return only the transition state the client needs, and move repair or aggregation work out of latency-sensitive commands.
+
+Realtime messages are limited to 1 MB each and 100 messages per second per installation. Coalesce rapid game changes, prefer compact deltas or invalidation signals, and give reconnecting clients a canonical snapshot path rather than depending on replay of every event. Verify current values in Reddit's [Limits and Policies FAQ](https://developers.reddit.com/docs/guides/faq#limits-and-policies) before launch.
+
 ## Competitive and noncompetitive modes
 
 Represent competitive, practice, replay, tutorial, and spectator sessions separately when their persistence or eligibility differs. Do not let a practice result overwrite a ranked result or enter competitive histories and aggregates accidentally.

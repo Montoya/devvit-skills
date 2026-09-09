@@ -13,6 +13,8 @@ Devvit provides a managed Redis database for server-side app state. Use its supp
 
 Redis data is namespaced per app installation and siloed by subreddit. Use stable, discoverable collection keys and explicit indexes because Devvit does not support a global key scan. Treat cross-community data, such as a global leaderboard across installations, as a separate architecture requiring shared storage.
 
+Read [platform-budgets.md](references/platform-budgets.md) before designing storage, payloads, realtime traffic, scheduled work, settings, or media flows. Treat documented limits as hard ceilings rather than operating targets, and verify them against current official Devvit documentation before launch.
+
 ## Start with evidence
 
 1. Inspect `devvit.json`, the client entrypoints, the server bootstrap routes, and the installed Devvit versions.

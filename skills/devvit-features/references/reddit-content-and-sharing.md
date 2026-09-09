@@ -66,6 +66,14 @@ const post = await reddit.submitCustomPost({
 
 For an existing post, update only this style with `post.setCustomPostStyles({ shareImageUrl })`. If no custom URL is supplied, Reddit uses its generic share image. Treat the stored URL as durable application configuration, and do not repeatedly upload replacements: Devvit does not currently provide an API for deleting media uploaded with `media.upload()`.
 
+Runtime media uploads have a documented 20 MB maximum and a 30-second timeout. Compress and resize images well below the maximum: a file near 10 MB can still fail on a slow connection before reaching the size limit. Use bundled assets, Reddit-hosted URLs, or supported SVG data URLs for display. Do not assume an arbitrary remote image can be hotlinked; upload it to Reddit first when a Reddit-hosted URL is required.
+
+## Post data
+
+Use `postData` only for small shared JSON attached to one post, such as a schema version, lightweight public configuration, or a compact state hint. The documented limit is 2 KB per post. Use Redis for larger, indexed, private, or durable application state.
+
+`setPostData()` replaces the entire object. Read or retain the current fields, merge the intended change, validate the final encoded size, and then replace the object. Do not let concurrent writers silently discard each other's fields; centralize updates or add a version/conflict strategy when more than one path can write.
+
 ## Sharing
 
 Invoke the Devvit share surface from an explicit user action. Supply concise, safe metadata tied to the current post or result. Treat dismissal as cancellation, not an error or successful share. Do not claim that a share completed when the API only opened a share sheet.

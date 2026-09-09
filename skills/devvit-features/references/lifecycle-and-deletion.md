@@ -16,6 +16,7 @@ Keep mutable drafts separate from immutable published revisions. Bind each post 
 
 For scheduled content:
 
+- budget against the documented maximum of 10 live recurring actions per installation and check the scheduler documentation for separate `runJob()` limits;
 - distinguish recurring cadence slots from independently scheduled one-off items;
 - store canonical instants and make local-time and timezone conversion explicit at the editing boundary;
 - reject collisions and enforce one assignment per slot or claim;
@@ -25,6 +26,14 @@ For scheduled content:
 - keep audit records for assignment, movement, cancellation, publication, failure, and repair.
 
 Import and export canonical content through a versioned schema. Validate identifiers, references, invariants, and ordering before writing, and make repeated imports deterministic or explicitly conflict-aware.
+
+## Review-sensitive capabilities
+
+Plan review lead time for payments, user actions, and external fetch domains instead of treating approval as an immediate deployment step. Reddit's FAQ says most app versions and domain requests are reviewed within 1–2 business days, while policy ambiguity or higher-risk features may take longer.
+
+For external fetch, declare exact hostnames only: no wildcard, protocol, or path. Check the global allowlist first. Add a `Fetch Domains` section to the app README explaining every requested domain, and include Terms and Conditions and Privacy Policy links in the app details. Do not build a launch-critical dependency around an unapproved domain or assume a personal domain will be approved.
+
+Treat the [Limits and Policies FAQ](https://developers.reddit.com/docs/guides/faq#limits-and-policies), capability-specific documentation, and Devvit Rules as release inputs. If the app can expose mature content, require the applicable label or age gate before exposure and resolve policy uncertainty before submission.
 
 ## Reverse references
 

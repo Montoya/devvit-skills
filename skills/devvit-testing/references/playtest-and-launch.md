@@ -24,6 +24,8 @@ Test every supported major state, not only initial load, across:
 
 Standalone browser tests are useful for layout and logic but do not prove Reddit feed gestures, client effects, safe areas, attribution, login return behavior, or native-app webview behavior.
 
+Use Reddit's UI Simulator mobile view first for every new feature, then verify desktop, fullscreen, dark theme, and light theme. The simulator is a fast responsive and theme check, not a substitute for real mobile clients, native keyboard behavior, or feed interaction. Use a Chrome-based browser when testing the simulator's theme toggle because the toggle is not currently supported in Safari.
+
 ## Splash-to-main transition
 
 First determine whether inline is a launch-only splash or the complete bounded experience. For a launch-only splash, inspect it as its own performance and behavior boundary. Confirm that it contains only lightweight presentation, restrained optional animation, and the launch interaction—not the core gameplay or main app flow. Rendering it must not create an attempt, start a timer, award progress, or perform another premature authoritative mutation.
@@ -39,6 +41,8 @@ Close expanded mode during initial loading, partially entered input, pending mut
 Exercise logged-out, logged-in, moderator, nonmoderator, deleted, and inaccessible Reddit objects. Invoke protected endpoints directly as an unauthorized user; hidden controls are not a permission test.
 
 Playtest user-authored posts, comments, and subscriptions with the actual approval and permission state intended for launch. Confirm attribution and cancellation rather than inferring success from local state.
+
+Before approval, `runAs: 'USER'` can fall back to app attribution for most playtest users while app-owner actions use the owner's username. Test again after the capability is approved; do not treat pre-approval playtest attribution as proof of launch behavior.
 
 ## Sharing and navigation
 
@@ -63,5 +67,7 @@ Before publishing:
 - verify app icon, share preview, fallback text, permissions, and declared capabilities;
 - provide a non-template README that explains the app, configuration, deployment, operation, and support path; and
 - playtest the uploaded build in a dedicated test subreddit before app review.
+
+For external fetch domains, check the global allowlist, declare exact hostnames without wildcards, protocols, or paths, document each hostname and purpose in a `Fetch Domains` README section, and include Terms and Conditions and Privacy Policy links in the app details. Treat the stated 1–2 business-day review window as planning guidance, not a guaranteed deadline. Review the Devvit Rules and add required labels or age gates before exposing mature content.
 
 Separate launch blockers from optional improvements, and preserve evidence for platform-dependent checks that cannot be automated.

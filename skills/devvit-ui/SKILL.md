@@ -36,7 +36,7 @@ Do not insert unbudgeted status, success, or error containers into normal flow a
 11. Make shared visual regions use the same width and breakpoint logic. A header aligned with a bordered play container must inherit its width and matching side borders.
 12. Add compact short-height variants before shrinking tap targets or essential text.
 13. For screens with inputs, define a keyboard-visible state that repositions the active form region and hides nonessential content as needed.
-14. Verify every supported surface with real Reddit playtest behavior as well as a standalone browser.
+14. Start verification in the UI Simulator's mobile view, then test desktop, fullscreen, light theme, and dark theme before validating every supported surface in real Reddit clients as well as a standalone browser.
 
 Read [fixed-viewport-layout.md](references/fixed-viewport-layout.md), [interaction-and-canvas.md](references/interaction-and-canvas.md), and [responsive-review.md](references/responsive-review.md) as needed.
 
@@ -51,6 +51,9 @@ Read [fixed-viewport-layout.md](references/fixed-viewport-layout.md), [interacti
 - Do not rely on expanded-view teardown to save important work. Persist at deliberate mutations or checkpoints and make the reopen behavior clear when progress may be discarded.
 - Keep borders, radii, and backgrounds consistent across adjacent regions.
 - Prefer one heading per region and concise, action-oriented copy. Do not repeat a page title in both global and local chrome.
+- Start with the smallest mobile composition and progressively enhance wider views. Keep primary actions reachable in common thumb zones, make touch targets comfortably tappable with adequate spacing, and keep text readable without zooming.
+- Support both Reddit color schemes through `prefers-color-scheme` or the framework's equivalent. Verify contrast, focus, disabled, error, and selected states in both themes.
+- Prefer relative units for typography and adaptable spacing. Use fixed pixels only for genuine platform contracts, hairlines, or measured constraints—not as a substitute for responsive layout.
 - Apply single-line ellipsis or a fixed multiline clamp to variable display text before it can increase a bounded region's height. Provide access to the full value when it is important.
 - Keep transient messages out of normal flow. Bound overlay dimensions and prevent multiple custom toasts from stacking beyond the viewport.
 - Do not assume a focused mobile input remains visible. React to the reduced visual viewport and keep the field, its error, and its submit or next action above the keyboard.

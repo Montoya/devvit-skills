@@ -1,5 +1,19 @@
 # Responsive Review Matrix
 
+## Simulator-first pass
+
+Use Reddit's [UI Simulator](https://developers.reddit.com/docs/guides/tools/ui_simulator#best-practices) as the first responsive review pass:
+
+1. Begin in mobile view and confirm every critical feature and action is accessible before widening the viewport.
+2. Add layout density and secondary enhancements progressively in desktop and fullscreen views; do not make the mobile design a compressed desktop layout.
+3. Prioritize essential content, optimize images and media, and prefer a single-column mobile hierarchy where it fits the surface's fixed-height contract. Split or paginate content instead of creating inline scrolling.
+4. Keep primary actions within comfortable thumb reach. Verify touch-target size, spacing between controls, and readable text without zooming.
+5. Use relative units for typography and adaptable spacing, while retaining fixed values only where the Devvit surface contract genuinely requires them.
+6. Test light and dark themes, including contrast, focus indicators, disabled controls, validation, overlays, and image legibility. Devvit webviews receive the user's color-scheme preference, so implement `prefers-color-scheme` or the framework's equivalent rather than a simulator-only theme switch.
+7. Test every new feature in mobile view again before considering its responsive work complete.
+
+The simulator offers mobile, desktop, fullscreen, light, and dark checks. Its color-scheme toggle does not currently work in Safari; use a Chrome-based browser for that check. Simulator success does not prove native safe areas, on-screen keyboard behavior, surrounding feed gestures, device performance, or Reddit client effects, so finish with real-client playtests.
+
 Review every major state, not only the initial screen:
 
 | Surface | What to inspect |
@@ -14,6 +28,7 @@ Review every major state, not only the initial screen:
 | Inline results/editor | fixed row or field capacity, visible pagination, no internal scrolling |
 | Mobile keyboard | focused field, validation, and primary action visible; nonessential regions collapse; layout restores on dismissal |
 | Feedback states | loading, success, validation, and error feedback do not change outer dimensions or push controls |
+| Light and dark themes | sufficient contrast, visible focus and state styling, legible media and overlays |
 
 At the exact width breakpoint, compare adjacent regions pixel-for-pixel. Header, main container, footer, and overlays should agree on max width, horizontal padding, side borders, and radii.
 
