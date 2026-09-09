@@ -1,6 +1,6 @@
 ---
 name: devvit-games
-description: "Build or review Devvit Web games with server-authoritative rounds, timers, scoring, rankings, replays, logged-out continuity, recovery, and accessible feedback. Use for game mechanics and integrity."
+description: "Build or review Devvit Web games with authoritative rounds, scoring, recovery, mobile animation performance, lifecycle handling, and accessible player feedback. Use for game mechanics and integrity."
 ---
 
 # Devvit Games
@@ -27,6 +27,7 @@ Never accept client-calculated time, score, completion, identity, inventory, rew
 - For round state, server clocks, hidden information, idempotency, replay, and recovery, read [authoritative-game-state.md](references/authoritative-game-state.md).
 - For scoring, ranking, leaderboards, histories, and score graphs or distributions, read [scores-and-visualizations.md](references/scores-and-visualizations.md).
 - For logged-out continuity, share deeplinks, recipient-specific landing UI, sound, and accessible feedback, read [sharing-and-player-experience.md](references/sharing-and-player-experience.md).
+- For animation loops, frame-time stability, allocation, pooling, rendering cost, lifecycle suspension, and physical-device profiling, read [mobile-animation-performance.md](references/mobile-animation-performance.md).
 
 ## Cross-game rules
 
@@ -39,6 +40,7 @@ Never accept client-calculated time, score, completion, identity, inventory, rew
 - Treat expanded views as interruptible: users can close them at any time, and important progress must not depend on an unload callback.
 - Treat share data, local storage, URL state, and display caches as untrusted hints.
 - Preserve game mechanics when reduced motion, muted sound, keyboard control, or assistive technology changes presentation.
+- Keep simulation correct when rendering slows, the webview is backgrounded, or a resumed frame reports a large elapsed interval. Bound catch-up work and re-resolve authoritative time after interruption.
 - When the inline entrypoint is launch-only, keep it lightweight and move the core loop into the game entrypoint. A bounded, fast, gesture-compliant game may instead run directly inline.
 
 ## Build for player success
@@ -61,4 +63,4 @@ Beyond baseline usability, design for the qualities that help a game succeed wit
 
 ## Verify
 
-Test every state transition, invalid transition, duplicate command, boundary timestamp, concurrent finalization, refresh point, reconnect path, and eligibility mode. Confirm that hidden information never appears in client bundles, bootstrap payloads, share data, logs, or premature graphs. For every release, test the custom first screen, self-explanatory onboarding, and every game screen on inline mobile, inline desktop, and fullscreen viewports; confirm that inline play never depends on an internal scrollbar.
+Test every state transition, invalid transition, duplicate command, boundary timestamp, concurrent finalization, refresh point, reconnect path, and eligibility mode. Confirm that hidden information never appears in client bundles, bootstrap payloads, share data, logs, or premature graphs. For every release, test the custom first screen, self-explanatory onboarding, and every game screen on inline mobile, inline desktop, and fullscreen viewports; confirm that inline play never depends on an internal scrollbar. Profile animation on physical mobile devices in the Reddit app, including background/resume and a long enough session to expose heat, memory growth, and intermittent frame-time spikes.

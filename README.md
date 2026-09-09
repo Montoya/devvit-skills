@@ -36,7 +36,7 @@ The `skills` CLI supports Codex, Claude Code, Cursor, GitHub Copilot, and many o
 | Skill | Use it for |
 | --- | --- |
 | [devvit-features](skills/devvit-features/SKILL.md) | Identity, permissions, leaderboards, sharing, user content, publication, subscriptions, and lifecycle behavior. |
-| [devvit-games](skills/devvit-games/SKILL.md) | Server-authoritative rounds, timers, scoring, rankings, replays, recovery, and accessible feedback. |
+| [devvit-games](skills/devvit-games/SKILL.md) | Server-authoritative rounds, scoring, recovery, mobile animation performance, lifecycle handling, and accessible feedback. |
 | [devvit-performance](skills/devvit-performance/SKILL.md) | Startup latency, caching, pagination, Redis indexes, bundles, and serverless request paths. |
 | [devvit-testing](skills/devvit-testing/SKILL.md) | Unit and capability tests, concurrency, webviews, real Reddit playtests, and launch readiness. |
 | [devvit-ui](skills/devvit-ui/SKILL.md) | Responsive inline and expanded layouts, fixed viewports, safe areas, touch, canvas, and accessibility. |
